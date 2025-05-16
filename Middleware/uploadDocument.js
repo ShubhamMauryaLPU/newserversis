@@ -2,31 +2,17 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 
-const uploadPath = "uploads/documents";
-if (!fs.existsSync(uploadPath)) fs.mkdirSync(uploadPath, { recursive: true });
-
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadPath);
+  destination: function (req, file, cb) {
+    cb(null, "uploads/documents"); // Make sure this folder exists
   },
-  filename: (req, file, cb) => {
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
     const ext = path.extname(file.originalname);
-    const name = path.basename(file.originalname, ext);
-    const uniqueName = `${name}-${Date.now()}${ext}`;
-    cb(null, uniqueName);
+    cb(null, file.fieldname + "-" + uniqueSuffix + ext);
   },
 });
 
-const uploadDocuments = multer({
-  storage,
-  fileFilter: (req, file, cb) => {
-    const allowedExt = [".pdf", ".jpg", ".jpeg", ".png"];
-    const ext = path.extname(file.originalname).toLowerCase();
-    if (!allowedExt.includes(ext)) {
-      return cb(new Error("Only PDF and image files are allowed"), false);
-    }
-    cb(null, true);
-  },
-});  
+const upload = multer({ storage: storage });
 
-export default uploadDocuments;
+export default upload;

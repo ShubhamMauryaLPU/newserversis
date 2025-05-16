@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 const StudentSchema = new mongoose.Schema({
-  studentId: { type: String, required: true, unique: true },
+  id: { type: String, required: true, unique: true },
   fullName: { type: String, required: true },
   dateOfBirth: { type: Date, required: true },
-  gender: { type: String, enum: ["Male", "Female", "Other"], required: true },
+  gender: { type: String, required: true },
   email: { type: String, required: true },
   phone: { type: String, required: true },
   governmentId: { type: String, required: true },
@@ -32,7 +32,7 @@ const StudentSchema = new mongoose.Schema({
     loanPurpose: String,
     repaymentCapacityEstimate: Number,
   },
-       
+
   documents: {
     incomeCertificate: String,
     feeStructure: String,

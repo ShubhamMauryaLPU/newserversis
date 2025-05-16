@@ -121,11 +121,11 @@ export const updateStudent = async (req, res) => {
     if(req.body.password) student.password=req.body.password;
     if (req.body.mobile) student.mobile = req.body.mobile;
     if (req.body.class) student.class = req.body.class;
-    if (req.body.professionLogin)
-      student.professionLogin = req.body.professionLogin;
+    if (req.body.professionLogin) student.professionLogin = req.body.professionLogin;
     if (req.body.student) student.student = req.body.student;
     if (req.body.children) student.children = req.body.children;
-
+    if(req.body.loanEligible) student.loanEligible=req.body.loanEligible;
+    
     if (req.files?.titleImg && req.files.titleImg.length > 0) {
       student.image = req.files.titleImg[0].filename;
     }

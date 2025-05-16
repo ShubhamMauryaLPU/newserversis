@@ -1,3 +1,4 @@
+
 import mongoose, { Mongoose } from "mongoose";
 
 // Subject Schema
@@ -34,6 +35,10 @@ const StudentSchema = new mongoose.Schema({
   currentCourse: { type: String },
   parent,
   children: [ChildSchema],
+  loanEligible: {
+  type: Boolean,
+  default: false 
+}
 });
 
 const Student = mongoose.model("Student", StudentSchema);

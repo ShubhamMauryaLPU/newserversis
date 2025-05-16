@@ -2,7 +2,7 @@ import Student from "../Model/finance.js";
 
 export const createStudent = async (req, res) => {
   try {
-    const { body, files } = req;
+    const { body, files = {} } = req;
 
     const documents = {
       incomeCertificate: files.incomeCertificate?.[0]?.filename || "",
@@ -19,7 +19,6 @@ export const createStudent = async (req, res) => {
       ...body,
       documents,
     });
- 
     await newStudent.save();
 
     res.status(201).json({
@@ -49,7 +48,7 @@ export const getAllStudents = async (req, res) => {
 // GET Student by studentId
 export const getStudentById = async (req, res) => {
   try {
-    const student = await Student.findOne({ studentId: req.params.id });
+    const student = await Student.findOne({ id: req.params.id });
     if (!student) return res.status(404).json({ message: "Student not found" });
     res.json(student);
   } catch (err) {

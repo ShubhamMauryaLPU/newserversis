@@ -22,11 +22,12 @@ const fileFields = uploadDocument.fields([
 router.get("/test", (req, res) => {
   res.json({ message: "Test route is working" });
 });
-router.post("/upload", fileFields, createStudent);
+router.post("/upload", createStudent);
 
 router.get("/", getAllStudents);
 router.get("/:id", getStudentById);
-router.put("/:id", updateStudent);
+router.put("/:id", updateStudent); 
 router.delete("/:id", deleteStudent);
 
 export default router;
+ 

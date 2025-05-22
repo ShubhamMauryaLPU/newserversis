@@ -1,18 +1,18 @@
 import mongoose from "mongoose";
 
 const StudentSchema = new mongoose.Schema({
-  id: { type: String, required: true, unique: true },
-  fullName: { type: String, required: true },
-  dateOfBirth: { type: Date, required: true },
-  gender: { type: String, required: true },
-  email: { type: String, required: true },
-  phone: { type: String, required: true },
-  governmentId: { type: String, required: true },
+  id: { type: String ,required:true},
+  fullName: { type: String },
+  dateOfBirth: { type: Date },
+  gender: { type: String },
+  email: { type: String },
+  phone: { type: String },
+  governmentId: { type: String },
 
   academicInfo: {
     institution: String,
     course: String,
-    year: Number,
+    year: Number, 
     semester: Number,
     cgpa: Number,
     admissionType: String,
